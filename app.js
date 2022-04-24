@@ -10,10 +10,12 @@ const campsiteRouter = require("./routes/campsiteRouter");
 const promotionRouter = require("./routes/promotionRouter");
 const partnerRouter = require("./routes/partnerRouter");
 const uploadRouter = require('./routes/uploadRouter');
+const favoriteRouter = require('./routes/favoriteRouter')
 
 // ****************     CONNECT EXPRESS TO MONGODB SERVER ***************
 
 const mongoose = require("mongoose");
+const { requiredPaths } = require("./models/favorite");
 
 const url = "mongodb://0.0.0.0:27017/nucampsite";
 const connect = mongoose.connect(url, {
@@ -64,6 +66,7 @@ app.use("/campsites", campsiteRouter);
 app.use("/promotions", promotionRouter);
 app.use("/partners", partnerRouter);
 app.use('/imageUpload', uploadRouter);
+app.use('/favorites', favoriteRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
